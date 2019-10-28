@@ -1,14 +1,23 @@
 # Video and Audio Synchronization
 
-## Abstract
-Popular streaming services, such as YouTube and Twitch, often receive reports of video and audio offsets from their users. However, from their end, the server-side video and audio files are perfectly synchronized, and latencies are actually introduced unpredictably before both video and audio are outputted from these users’ edge devices. Those latencies are often non-deterministic and can only truly be resolved by performing a real-time analysis and subsequent timing corrections on both video and audio inputs at the users’ side. The purpose of this project is to quickly analyze a video’s audio cues and determine how much offset exists between the audio and video files, then perform the necessary time shift to realign them. By using audio and screen capture technology, we are able to identify what a user sees and hears. Specific features are then extracted from the captured and audio and video streams, and passed through a trained neural network to determine the required time shift. This feedback system will run continuously during a streaming session and properly correct the timings of video and audio streams as soon as an offset is identified.
-
 ## Authors
 - Mark Chen
 - An Le
 - Loic Maxwell
 
-## Previous Works
+## Abstract
+Popular streaming services, such as YouTube and Twitch, often receive reports of video and audio offsets from their users. However, from their end, the server-side video and audio files are perfectly synchronized, and latencies are actually introduced unpredictably before both video and audio are outputted from these users’ edge devices. Those latencies are often non-deterministic and can only truly be resolved by performing a real-time analysis and subsequent timing corrections on both video and audio inputs at the users’ side. The purpose of this project is to quickly analyze a video’s audio cues and determine how much offset exists between the audio and video files, then perform the necessary time shift to realign them. By using audio and screen capture technology, we are able to identify what a user sees and hears. Specific features are then extracted from the captured and audio and video streams, and passed through a trained neural network to determine the required time shift. This feedback system will run continuously during a streaming session and properly correct the timings of video and audio streams as soon as an offset is identified.
+
+## Prior Works
+
+
+## Technical Approaches
+
+
+## Experimental Methods
+
+
+## References
 - Imad H. Elhajj, Nadine Bou Dargham, Ning Xi, and Yunyi Jia. 2011. “Real-Time Adaptive Content-Based Synchronization of Multimedia Streams.” *Advances in Multimedia*. https://doi.org/10.1155/2011/914062
 
 - Detecting audio-visual synchrony using deep neural networks:\
@@ -31,3 +40,16 @@ https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf
 
 - Using timestamp to realize audio-video synchronization in Real-Time streaming media transmission:\
 https://ieeexplore.ieee.org/document/4589974
+
+
+- Lip Reading - Cross Audio-Visual Recognition
+https://github.com/astorfi/lip-reading-deeplearning
+
+
+- The Sound of Pixels -  locate image regions which produce sounds
+http://sound-of-pixels.csail.mit.edu
+
+
+- Audiovisual synchrony detection with optimized audio features
+https://hal.inria.fr/hal-01889918/file/audiovisual_synchrony_2018.pdf
+
