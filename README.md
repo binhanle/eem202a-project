@@ -6,8 +6,8 @@
 * [Prior Works](#prior-works)
 * [Technical Approaches](#technical-approaches)
 * [Experimental Methods](#experimental-methods)
-* [References](#references)
 * [Timeline](#timeline)
+* [References](#references)
 
 ## Authors
 - Mark Chen
@@ -28,29 +28,37 @@ Popular streaming services, such as YouTube and Twitch, often receive reports of
 
 ## Timeline
 
+### Legend
+| Status | Color |
+| --- | :---: |
+| Scheduled | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| In progress | ![yellow](https://placehold.it/32/f1c232/000000?text=+) |
+| Completed | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Aborted | ![red](https://placehold.it/32/cc0000/000000?text=+) |
+
 | Task | Week 5 | Week 6 | Week 7 | Week 8 | Week 9  | Week 10 | Delivery |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **I. Datasets** |
-| Create own customized datasets (full frontal, single person) |
-| Experiment with video streaming sites, to test real-time performance (optional) |
+| Create own customized datasets (full frontal, single person) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Experiment with video streaming sites, to test real-time performance (optional) | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **II. Capture audio and video from user end** |
-| Select hardware/software tools |
-| Experiment with other tools and make a performance comparison (optional) |
+| Select hardware/software tools | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Experiment with other tools and make a performance comparison (optional) | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **III. Handle the captured audio and video inputs** |
-| Determine what tools to use for demuxing audio/video of .mp4 files |
-| Create translation into a usable format for the feature extraction program |
-| Expand to other video formats (optional) |
+| Determine what tools to use for demuxing audio/video of .mp4 files | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Create translation into a usable format for the feature extraction program | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Expand to other video formats (optional) | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **IV. Design ML network** |
-| Define features to extract from video/audio |
-| Build software to perform feature extraction |
-| Determine network architecture |
-| Train network |
+| Define features to extract from video/audio | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Build software to perform feature extraction | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Determine network architecture | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Train network | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **V. Create wrapper program** |
-| Define how to handle time injection |
-| Integrate the ML portion and resulting delay injection |
+| Define how to handle time injection | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Integrate the ML portion and resulting delay injection | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **VI. Translate into real-time system (optional)** |
-| Make video/audio capture and processing run in the background |
-| Implement real time delay injection |
+| Make video/audio capture and processing run in the background | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Implement real time delay injection | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 
 ## References
 - Imad H. Elhajj, Nadine Bou Dargham, Ning Xi, and Yunyi Jia. 2011. “Real-Time Adaptive Content-Based Synchronization of Multimedia Streams.” *Advances in Multimedia*. https://doi.org/10.1155/2011/914062
