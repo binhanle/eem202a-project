@@ -1,5 +1,14 @@
 # Video and Audio Synchronization
 
+## Table of Contents
+* [Authors](#authors)
+* [Abstract](#abstract)
+* [Prior Works](#prior-works)
+* [Technical Approaches](#technical-approaches)
+* [Experimental Methods](#experimental-methods)
+* [References](#references)
+* [Timeline](#timeline)
+
 ## Authors
 - Mark Chen
 - An Le
@@ -16,6 +25,32 @@ Popular streaming services, such as YouTube and Twitch, often receive reports of
 
 ## Experimental Methods
 
+
+## Timeline
+
+| Task | Week 5 | Week 6 | Week 7 | Week 8 | Week 9  | Week 10 | Delivery |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **I. Datasets** |
+| Create own customized datasets (full frontal, single person) |
+| Experiment with video streaming sites, to test real-time performance (optional) |
+| **II. Capture audio and video from user end** |
+| Select hardware/software tools |
+| Experiment with other tools and make a performance comparison (optional) |
+| **III. Handle the captured audio and video inputs** |
+| Determine what tools to use for demuxing audio/video of .mp4 files |
+| Create translation into a usable format for the feature extraction program |
+| Expand to other video formats (optional) |
+| **IV. Design ML network** |
+| Define features to extract from video/audio |
+| Build software to perform feature extraction |
+| Determine network architecture |
+| Train network |
+| **V. Create wrapper program** |
+| Define how to handle time injection |
+| Integrate the ML portion and resulting delay injection |
+| **VI. Translate into real-time system (optional)** |
+| Make video/audio capture and processing run in the background |
+| Implement real time delay injection |
 
 ## References
 - Imad H. Elhajj, Nadine Bou Dargham, Ning Xi, and Yunyi Jia. 2011. “Real-Time Adaptive Content-Based Synchronization of Multimedia Streams.” *Advances in Multimedia*. https://doi.org/10.1155/2011/914062
