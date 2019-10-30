@@ -50,17 +50,17 @@ The neural network itself will be a supervised learner. It is trained by inputti
 | Task | Week 5 | Week 6 | Week 7 | Week 8 | Week 9  | Week 10 | Delivery |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **I. Datasets** |
-| Create own customized datasets (full frontal, single person): Loic, Mark, An | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Create own customized datasets (full frontal, single person): Loic, Mark, An | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Experiment with video streaming sites, to test real-time performance (optional): Loic, Mark, An | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **II. Capture audio and video from user end** |
-| Select hardware/software tools: Mark | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Select hardware/software tools: Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Experiment with other tools and make a performance comparison (optional): Mark | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **III. Handle the captured audio and video inputs** |
-| Determine what tools to use for demuxing audio/video of .mp4 files: Mark | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Determine what tools to use for demuxing audio/video of .mp4 files: Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Create translation into a usable format for the feature extraction program: Mark | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Expand to other video formats (optional): Mark, An, Loic | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | **IV. Design ML network** |
-| Define features to extract from video/audio: An, Loic, Mark | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Define features to extract from video/audio: An, Loic, Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Build software to perform feature extraction: An | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Determine network architecture: An, Mark, Loic | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | Train network: An | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
