@@ -62,12 +62,13 @@ Following this process, a second set of test videos will be acquired. These will
 
 ### Legend
 | Status | Color |
-| ----- | :-----: |
+| --- | :---: |
 | Scheduled | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | In progress | ![yellow](https://placehold.it/32/f1c232/000000?text=+) |
 | Completed | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | Aborted | ![red](https://placehold.it/32/cc0000/000000?text=+) |
 
+### Schedule
 | Major Objective with Subtasks | Week 5 | Week 6 | Week 7 | Week 8 | Week 9 | Week 10 |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **I. Datasets** |
