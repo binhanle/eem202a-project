@@ -5,7 +5,7 @@ UCLA ECE M202A Project, Fall 2019
 * [Authors](#authors)
 * [Abstract](#abstract)
 * [Prior Work](#prior-work)
-* [Technical Approach](#technical-approach-methodology-data-validation)
+* [Technical Approach (Methodology, Data, Validation)](#technical-approach-methodology-data-validation)
 * [Timeline](#timeline)
 * [Deliverables](#deliverables)
 * [Success Metrics](#success-metrics)
