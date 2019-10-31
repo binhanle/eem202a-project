@@ -26,7 +26,7 @@ The emergence of machine learning helps boost the uses of feature-based analysis
 A couple of works had proposed their own trained machine learning systems to detect the presence of audio-visual synchronization in some given pairs of video and audio inputs [6,7]. Nevertheless, there is limited information of concrete methods that can be used to resolve the detected time offsets between a pair of video and audio inputs. Given this point, there is a need to develop a working audio-visual synchronization system that enables follow-up synchronization after the detection of a time offset.    
 
 
-## Technical Approach
+## Technical Approach (Methodology, Data, Validation)
 
 ## Methodology:
 
