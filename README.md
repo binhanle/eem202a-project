@@ -61,6 +61,7 @@ Following this process, a second set of test videos will be acquired. These will
 ## Timeline
 
 ### Legend
+
 | Status | Color |
 | --- | :---: |
 | Scheduled | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
@@ -69,6 +70,7 @@ Following this process, a second set of test videos will be acquired. These will
 | Aborted | ![red](https://placehold.it/32/cc0000/000000?text=+) |
 
 ### Schedule
+
 | Major Objective with Subtasks | Week 5 | Week 6 | Week 7 | Week 8 | Week 9 | Week 10 |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **I. Datasets** |
