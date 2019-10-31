@@ -61,9 +61,8 @@ Following this process, a second set of test videos will be acquired. These will
 ## Timeline
 
 ### Legend
-
 | Status | Color |
-| --- | :---: |
+| ----- | :-----: |
 | Scheduled | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
 | In progress | ![yellow](https://placehold.it/32/f1c232/000000?text=+) |
 | Completed | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
