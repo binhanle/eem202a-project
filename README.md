@@ -58,6 +58,17 @@ A test set for the neural network provides the best measure of its performance. 
 
 Following this process, a second set of test videos will be acquired. These will test the accuracy of the trained network. With a 40 ms error tolerance, it is possible to have a success rate of over 90% for all test cases. Once this has been accomplished, the next step is to test on random videos found on the internet (e.g. YouTube). They will still feature full-frontal shots of a single speaker, but this will test the versatility of the neural network.
 
+### Primary Objectives
+
+- Develop a machine-learning based model to properly recognize and quantify video and audio time offsets for videos of a single speaker in full-frontal view, with an error less than 40ms
+- Define a performance spectrum of the model for varying delays between the audio and video streams, to determine the range of its best use case
+
+### Stretch Objectives
+
+- Create a backend program to run in real time, to capture the on screen video, determination in time offset, and make the necessary correction, all automatically
+- Expand analysis to similar video types, acquired from various web sources (YouTube)
+- Implement delay compensation for a common video streaming service
+
 ## Timeline
 
 ### Legend
