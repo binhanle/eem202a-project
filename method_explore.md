@@ -1,7 +1,7 @@
 ---
-title:  ECE M202A Project - Introduction
+title:  Exploration
 layout: template
-filename: index
+filename: method_explore
 --- 
 
 # Audio and Video Synchronization
