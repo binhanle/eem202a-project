@@ -152,7 +152,7 @@ As it was mentioned before, the scope of this project will be limited to videos 
 
 ## Test Results
 
-### Processing the entire clip:
+### Processing the entire clip
 
 The following test results come from two base videos. One of them is a clip of a CNN news report, while the other has been recorded by us. A total of 51 sets were created for each base video, corresponding to audio/video offsets of -1s to 1s in increments of 40ms. The following histogram shows the error between the computed offset and the true offset:
 
@@ -178,14 +178,24 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 <br/>
 
 
-
 ### Using a Variable Window Size
 
 "Insert computational time(window size) vs. accuracy info"
 
-## Limitations
 
-## Next Steps
+### Key Findings
+* The mouth aspect ratios (MARs) of a speaker in the video has a good correlation to his or her voice activity in the audio.
+* Using raw MARs instead of a binary MAR threshold gives better correlation between MAR and voice activity
+* There is a consistent offset between when a person opens his or her mouth and when he or she start/resume the talk
+
+
+## Evaluation
+The strategy of identifying speaking & non-speaking portions from open mouth and voice activity then correlating the audio and video streams allows fast processing speed for for time offset calculations. By considering the nature of injecting time offsets, this synchronization strategy ideally can work on any time offset length between a pair of audio and video streams. In addition, the mechanism of time offset calulation is intuitive and easy to understand. It appears that audiovisual synchronization is possible when given decisive features from the audio and video streams.
+
+Because of its' simplicity, the presented sychronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this sychronization strategy is that the speaker cannot lose his or her forntal pose or temproraily disppear from the scenes. These situations can potentially cause missing information in the video stram and thus reduce the performance of the audiovisual synchronization by the presented system. 
+
+
+## Future Directions
 
 ## Timeline
 
