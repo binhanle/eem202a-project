@@ -203,6 +203,8 @@ Because of its' simplicity, the presented sychronization strategy is limited to 
 
 
 ## Future Directions
+The presented work can be expanded by including more decisive features for audiovisual correlation. The team will pursue further research in sound source recognitions so that multi-speaker scenarios can be covered the presented audiovisual synchronization strategy. Further investigation on correlating lip movements with phonemes can also be pursued for increasing the chance of correctly pairing a human voice with a speaker. Such a imporvement can be made to avoid mismatches of open mouths and voice acitivties in multi-speaker video files. For addressing the consistent offset between open mouth and human voice, the team will explore literatures that document visual cues in human speech. After idenifying the range of time offsets between open mouth motion and human voice acitivity, the team will determine equation(s) that can negate this innate discrepancy.
+
 
 ## Timeline
 
