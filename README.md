@@ -36,7 +36,9 @@ A couple of works had proposed their own trained machine learning systems to det
 This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The audio and video were trained separately in two convolutional neural networks (CNNs).
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat1.png"></img>
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat1.png" />
+	<br/>
+	<strong>CNN Architecture</strong>
 </p>
 
 The reason why we did not pursue this approach is...
@@ -49,7 +51,8 @@ This approach can be found under:
 The third attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"></img>
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"/>
+	<br/>
 	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
 </p>
 	
@@ -69,7 +72,8 @@ In order to capture what a user would see and hear from the video, thereby encom
 FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it controlled by some backend process. "Insert details about screen capture"
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"></img>
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"/>
+	<br/>
 	<strong>Media Capture Technique</strong>
 </p>
 
@@ -88,7 +92,7 @@ This project focuses on videos that portray a single full frontal speaker, in ca
 This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
 
 <p align="center">
-	<img height="400" src="https://github.com/binhanle/eem202a-project/blob/master/Images/mar_descriptor.png"></img>
+	<img height="400" src="https://github.com/binhanle/eem202a-project/blob/master/Images/mar_descriptor.png"/>
 	<br/>
 	<strong>MAR Example</strong>
 </p>
@@ -104,7 +108,10 @@ Voice activity detectors are very common for speech processing, specifically whe
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/vad_descriptor.png"></img>
 	<br/>
-	<strong>VAD Detection Example <br/> Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/</strong>
+	<strong>VAD Detection Example 
+		<br/> 
+		Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/
+	</strong>
 </p>
 <br/>
 
