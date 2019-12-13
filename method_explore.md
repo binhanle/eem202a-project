@@ -4,26 +4,41 @@ layout: template
 filename: method_explore
 --- 
 
-# Audio and Video Synchronization
 
-## By An Le, Mark Chen, and Loic Maxwell
+## Table of Contents
+* [Discontinued Approaches](#discontinued-approaches)
+  * [Direct CNN Approach](#direct-cnn-approach)
+  * [SyncNet-Inspired Approach](#syncNet-inspired-approach)
 
-#### What is patrickandfrantonarethebestninjas?
-This project aims to demonstrate without a doubt why Patrick and Franton are the best ninjas. 
 
-#### How can I use patrickandfrantonarethebestninjas?
-Come to office hours and git tutorials. Baked goods and cash are also accepted.
+## Discontinued Approaches
 
-#### Dependencies
-patrickandfrantonarethebestninjas depends heavily on the perception of students. A lot of research has been done looking into ways of monitoring and directly modifying how students perceive ninjas, and we have implemented this technology to the fullest extent. 
+### Direct CNN Approach
 
-#### How to contribute?
-To contribute to patrickandfrantonarethebestninjas, write a heart-felt love note and submit a PR. 
+This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The audio and video were trained separately in two convolutional neural networks (CNNs).
 
-#### License
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat1.png" />
+	<br/>
+	<strong>CNN Architecture</strong>
+</p>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The reason why we did not pursue this approach is...
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+This approach can be found under:
+"Name for Strategy 1 colab notebook"
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### SyncNet-Inspired Approach
+
+The third attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. 
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"/>
+	<br/>
+	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
+</p>
+	
+The reason why we did not pursue this strategy is...
+
+This approach can be found under:
+"Name for Strategy 3 colab notebook"
