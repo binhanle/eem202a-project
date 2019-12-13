@@ -1,12 +1,12 @@
 ---
-title:  ECE M202A Project - Index
+title:  ECE M202A Project - Introduction
 layout: template
 filename: index
 --- 
 
 # Audio and Video Synchronization
 
-## Created by [Patrick Huston](http://www.patrickhuston.com/) and [Franton Lin](frantonlin.com)
+## By An Le, Mark Chen, and Loic Maxwell
 
 #### What is patrickandfrantonarethebestninjas?
 This project aims to demonstrate without a doubt why Patrick and Franton are the best ninjas. 
