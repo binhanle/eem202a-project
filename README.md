@@ -1,6 +1,8 @@
 # Video and Audio Synchronization
 UCLA ECE M202A Project, Fall 2019
 
+https://binhanle.github.io/eem202a-project/
+
 ## Table of Contents
 * [Authors](#authors)
 * [Abstract](#abstract)
