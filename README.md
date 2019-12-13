@@ -8,6 +8,9 @@ https://binhanle.github.io/eem202a-project/
 * [Abstract](#abstract)
 * [Prior Work](#prior-work)
 * [Technical Approach (Methodology, Data, Validation)](#technical-approach-methodology-data-validation)
+* [Results](#results)
+* [Strength and Weakness](#strength-and-weakness)
+* [Future Directions](#future-directions)
 * [Timeline](#timeline)
 * [Deliverables](#deliverables)
 * [Success Metrics](#success-metrics)
@@ -158,7 +161,7 @@ https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sha
 ### Training, Optimization of Parameters
 
 
-## Experimental Results
+## Results
 
 ### Processing the Entire Video File
 
@@ -197,7 +200,7 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 * There is a consistent offset between when a person opens his or her mouth and when he or she start/resume the talk
 
 
-## Evaluation
+## Strength and Weakness
 The strategy of identifying speaking & non-speaking portions from open mouth and voice activity then correlating the audio and video streams allows fast processing speed for for time offset calculations. By considering the nature of injecting time offsets, this synchronization strategy ideally can work on any time offset length between a pair of audio and video streams. In addition, the mechanism of time offset calulation is intuitive and easy to understand. It appears that audiovisual synchronization is possible when given decisive features from the audio and video streams.
 
 Because of its' simplicity, the presented sychronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this sychronization strategy is that the speaker cannot lose his or her forntal pose or temproraily disppear from the scenes. These situations can potentially cause missing information in the video stram and thus reduce the performance of the audiovisual synchronization by the presented system. 
@@ -245,8 +248,6 @@ The presented work can be expanded by including more decisive features for audio
 | **VI. Translate into real-time system (optional)** |
 | Make video/audio capture and processing run in the background: Mark | | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | Implement real time delay injection: Loic | | | | | ![red](https://placehold.it/32/cc0000/000000?text=+) | ![red](https://placehold.it/32/cc0000/000000?text=+) |
-
-### Objectives
 
 #### Primary:
 - Develop a machine-learning based model to properly recognize and quantify video and audio time offsets for videos of a single speaker in full-frontal view, with an error less than 40ms <strong>Completed</strong>
