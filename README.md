@@ -24,8 +24,23 @@ Audio-visual synchronization is a major factor when determining the quality of a
 
 The emergence of machine learning helps boost the uses of feature-based analysis in audio-visual synchronization. A variety of machine learning models become available for extracting definitive features that can correlate audio and visual data based on the entailed events. For instance, Zhao et al. introduce a system that can locate the region of pixels on a video frame that correspond to a sound source in the audio stream [4]. Another notable example is the Lip Reading machine learning model from Torfi et al. that matches human voices to lip motions [5]. With the advantage of utilizing feature-based information to correlate audio and video streams, one can likely design a machine learning model to classify whether a streaming service has its video and audio synced at a good accuracy.  
 
+"Insert SyncNet Paper"
+
 A couple of works had proposed their own trained machine learning systems to detect the presence of audio-visual synchronization in some given pairs of video and audio inputs [6,7]. Nevertheless, there is limited information of concrete methods that can be used to resolve the detected time offsets between a pair of video and audio inputs. Given this point, there is a need to develop a working audio-visual synchronization system that enables follow-up synchronization after the detection of a time offset.    
 
+
+## Discontinued Approaches
+
+### Direct CNN Approach
+
+This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The audio and video were trained separately in two convolutional neural networks (CNNs).
+
+### SyncNet Approach
+
+The sthird attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. There were multiple reasons why this approach was not selected. The first related to the. SyncNet was originally trained with . Lastly, the novelty of this approach was slightly lacking.
+
+This approach can be found under:
+"Name for Strategy 3 colab notebook"
 
 ## Technical Approach (Methodology, Data, Validation)
 
@@ -37,11 +52,11 @@ In order to capture what a user would see and hear from the video, thereby encom
 
 #### Demultiplexing of Video/Audio Files
 
-In order to properly run a neural network analysis and subsequent shifting of the video and audio stream files, the original video file must be demultiplexed. FFmpeg is a powerful tool which provides the capability to strip away the audio from a video file, while also allowing them to be spliced back together following the calculated time shift. Once these files have been isolated, they can be further processed. Through multiple stages of processing for each file, the relevant information can be extracted, normalized, and fed into the designed neural network. This drastically decreases the computational complexity of the data to be passed through the network.
+In order to properly run a neural network analysis and subsequent shifting of the video and audio stream files, the original video file must be demultiplexed. FFmpeg is a powerful tool which provides the capability to strip away the audio from a video file, while also allowing them to be spliced back together following the calculated time shift. Once these files have been isolated, they can be further processed. Through multiple stages of processing for each file, the relevant information can be separately extracted and processed. By extracting information from the audio stream and the video frames, the computational complexity is also drastically reduced.
 
-#### Processing, Features, and the Neural Network
+#### Processing, Features, and Cross-Correlation
 
-This project focuses on videos that portray a single full frontal speaker, where the audio leads the video. This allows for lip speech recognition software to be used as an additional tool for audio extraction of the video file. Additionally, using existing pixel-to-sound technology [4], frames where speech actually occurs can be isolated and one can determine the various start and stop points of semi-continuous speech. Lastly, a frequency analysis on the audio will reveal certain spikes in the speaker’s speech, and can be further analyzed using speech recognition tools like CMUSphinx. These, combined with the lip recognition analysis of the video, provide the means to draw correlations between the audio and video files. By combining all of these data processing techniques, there should be sufficient features to train a neural network. The neural network itself will be a supervised learner. It is trained by inputting multiple sets of inputs (features) along with their known respective outputs, or labels (time shift between the audio/video). Subsequent test inputs with unknown outputs can then theoretically be correctly classified. The architecture of the neural network itself is a different challenge, which will be tackled in the coming weeks of this project’s development.
+This project focuses on videos that portray a single full frontal speaker, in case where both the audio leads and lags the video. Initially, the plan was to only focus on cases where audio lags the video, but the selected approach proved to be robust. in This allows for lip speech recognition software to be used as an additional tool for audio extraction of the video file. Additionally, using existing pixel-to-sound technology [4], frames where speech actually occurs can be isolated and one can determine the various start and stop points of semi-continuous speech. Lastly, a frequency analysis on the audio will reveal certain spikes in the speaker’s speech, and can be further analyzed using speech recognition tools like CMUSphinx. These, combined with the lip recognition analysis of the video, provide the means to draw correlations between the audio and video files. By combining all of these data processing techniques, there should be sufficient features to train a neural network. The neural network itself will be a supervised learner. It is trained by inputting multiple sets of inputs (features) along with their known respective outputs, or labels (time shift between the audio/video). Subsequent test inputs with unknown outputs can then theoretically be correctly classified. The architecture of the neural network itself is a different challenge, which will be tackled in the coming weeks of this project’s development.
 
 #### Time injection
 
@@ -49,14 +64,17 @@ Once the required time shift has been identified by the neural network output, t
 	
 ### Data Sets for Neural Network Training/Validation
 
-As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker, where the audio leads the video. These videos will be recorded in a controlled environment. The plan is to shoot 5-7 different videos, with varying speaker location, speech, volume, ambient noise, etc. This will give the neural network a variety of cases on which it can be trained, which will make it more effective when the transition is made to testing on other types of videos. 
-Though the architecture of the neural network is not yet defined, the way in which it will be trained is relatively known. The neural network output represents the time delay between the audio and video streams, and in the case of training this will be provided for each set of inputs. FFmpeg can be used to create an audio lead of 1ms to 250ms for each video, in increments of 1ms. This provides a large training set for the neural network. This also provides a large enough range over which to compare the performance of the model for small time offsets compared to large ones. For the purpose of training and testing the network, k-fold cross validation will be used. This means that “k-1” sets of data will be used as the training set, and 1 set will be used as the test set to check the accuracy of the network, where one set is the data from a single video. The value “k” represents the number of different videos that will be recorded and used as data sets, which is still variable at this stage. The test set is then switched with one of the other sets used for training, and this process is repeated until every set has been used as the test set. The training set combination that yields the best results will be used for subsequent testing.
+As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of. For the purposes of training the system
 
 ### Validating the Neural Network
 
 A test set for the neural network provides the best measure of its performance. The calculated outputs (labels) can be compared to their known ones, and an error value can be computed for each set of input features. The average error across all outputs will be used to determine the best training set given this first set of data, according to k-fold cross validation. One of the primary goals is to keep this error below 40 ms for all output values, which would fall within a threshold of non-detectability from the perspective of a viewer [9]. In other words, a human would not recognize any synchronization problems if the out-of-sync audio and video are within 40ms of each other. If for some reason this goal is not achievable given the current data, the audio lead increment for creating training data will be decreased from 1ms to 0.5ms. If this does not resolve the issue, then other approaches will have to be taken (shorter increment, more data sets, more features, etc.).
 
 Following this process, a second set of test videos will be acquired. These will test the accuracy of the trained network. With a 40 ms error tolerance, it is possible to have a success rate of over 90% for all test cases. Once this has been accomplished, the next step is to test on random videos found on the internet (e.g. YouTube). They will still feature full-frontal shots of a single speaker, but this will test the versatility of the neural network.
+
+
+## Results
+
 
 ## Timeline
 
@@ -74,26 +92,28 @@ Following this process, a second set of test videos will be acquired. These will
 | Major Objective with Subtasks | Week 5 | Week 6 | Week 7 | Week 8 | Week 9 | Week 10 |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **I. Datasets** |
-| Create own customized datasets (full frontal, single person): Loic, Mark, An | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Experiment with video streaming sites, to test real-time performance (optional): Loic, Mark, An | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Find datasets online (full frontal, single person): Loic, Mark, An | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+)
+| Collect own datasets (full frontal, single person): Loic, Mark, An | | | | |![green](https://placehold.it/32/6aa84f/000000?text=+)|![green](https://placehold.it/32/6aa84f/000000?text=+)|
+| Experiment with video streaming sites, to test real-time performance (optional): Loic, Mark, An | | | | ![red](https://placehold.it/32/cc0000/000000?text=+) | ![red](https://placehold.it/32/cc0000/000000?text=+) |
 | **II. Capture audio and video from user end** |
-| Select hardware/software tools: Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Experiment with other tools and make a performance comparison (optional): Mark | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Select hardware/software tools: Mark | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Implementation (optional): Mark | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | **III. Handle the captured audio and video inputs** |
-| Determine what tools to use for demuxing audio/video of .mp4 files: Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Create translation into a usable format for the feature extraction program: Mark | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Expand to other video formats (optional): Mark, An, Loic | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| **IV. Design ML network** |
-| Define features to extract from video/audio: An, Loic, Mark | ![yellow](https://placehold.it/32/f1c232/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Build software to perform feature extraction: An | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Determine network architecture: An, Mark, Loic | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Train network: An | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Determine what tools to use for demuxing audio/video of .mp4 files: Mark | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Create translation into a usable format for the feature extraction program: Mark | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Expand to other video formats (optional): Mark, An, Loic | | | | | ![red](https://placehold.it/32/cc0000/000000?text=+) | ![red](https://placehold.it/32/cc0000/000000?text=+) |
+| **IV. Data Processing and Time Offset Computation** |
+| Define features to extract from video/audio: An, Loic, Mark | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Build software to perform feature extraction: An | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Cross-correlation implementation: An | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Complete processing pipeline: An, Mark, Loic | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Optimization on training data: An | | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | **V. Create wrapper program** |
-| Define how to handle time injection: Loic | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Integrate the ML portion and resulting delay injection: Loic | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Define how to handle time injection: Loic | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Integrate the processing, resulting delay injection, and video player: Loic | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | **VI. Translate into real-time system (optional)** |
-| Make video/audio capture and processing run in the background: Mark | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
-| Implement real time delay injection: Loic | | | | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![blue](https://placehold.it/32/3d85c6/000000?text=+) |
+| Make video/audio capture and processing run in the background: Mark | | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Implement real time delay injection: Loic | | | | | ![red](https://placehold.it/32/cc0000/000000?text=+) | ![red](https://placehold.it/32/cc0000/000000?text=+) |
 
 ### Objectives
 
