@@ -157,8 +157,9 @@ As it was mentioned before, the scope of this project will be limited to videos 
 The following test results come from two base videos. One of them is a clip of a CNN news report, while the other has been recorded by us. A total of 51 sets were created for each base video, corresponding to audio/video offsets of -1s to 1s in increments of 40ms. The following histogram shows the error between the computed offset and the true offset:
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_no_thresh.png"></img>
-	<strong>System Block Diagram</strong>
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_thresh.png"></img>
+	<br/>
+	<strong>Error between Computed Offset and True Offset</strong>
 </p>
 <br/>
 
@@ -170,8 +171,9 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_thresh.png"></img>
-	<strong>System Block Diagram</strong>
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_no_thresh.png"></img>
+	<br/>
+	<strong>Error using Binary MAR</strong>
 </p>
 <br/>
 
