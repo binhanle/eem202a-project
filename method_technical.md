@@ -6,8 +6,11 @@ filename: method_technical
 
 ## Table of Contents
 * [Methodology](#methodology)
-* [Media Capturing](#media-capturing)
-* [Demultiplexing of Video/Audio Files](#demultiplexing-of-video/audio-files)
+  * [Media Capturing](#media-capturing)
+  * [Demultiplexing of Video and Audio Files](#demultiplexing-of-video-and-audio-files)
+  * [Feature Processing](#feature-processing)
+    * [Mouth Aspect Ratio](#mouth-aspect-ratio)
+    * [Voice Activity Detection](#voice-activity-detection)
 
 
 
@@ -20,18 +23,18 @@ In order to capture what a user would see and hear from the video, thereby encom
 FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it controlled by some backend process. "Insert details about screen capture"
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"/>
+	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/media_capture.png"/>
 	<br/>
 	<strong>Media Capture Technique</strong>
 </p>
 
 This functionality has been built, but was not implemented as a part of this project's demonstration system. After some research, it was determined that most streaming services these days do not have API support for backend audio delay injection. The FFmpeg screen capture can be used to capture a certain length of video and audio, which is processed, and then a time offset is determined. However, this cannot be directly reinjected. For the purposes of this project, it is assumed that the entire video file is available for processing. A future development would be the integration of the media capturing with the rest of the system when some version of the delay injection APIs are released.
 
-#### Demultiplexing of Video/Audio Files
+#### Demultiplexing of Video and Audio Files
 
 In order to properly run a neural network analysis and subsequent shifting of the video and audio stream files, the original video file must be demultiplexed. FFmpeg is a powerful tool which provides the capability to strip away the audio from a video file, while also allowing them to be spliced back together following the calculated time shift. Once these files have been isolated, they can be further processed. Through multiple stages of processing for each file, the relevant information can be separately extracted and processed. By extracting information from the audio stream and the video frames, the computational complexity is also drastically reduced.
 
-#### Processing, Features, and Cross-Correlation
+#### Feature Processing
 
 This project focuses on videos that portray a single full frontal speaker, in case where both the audio leads and lags the video. Initially, the plan was to only focus on cases where audio lags the video, but the selected approach proved to be robust. For the purposes of correcting this audio and video stream offset, two major feature extraction techniques were applied: mouth aspect ratio computation (MAR) and voice activity detection (VAD). The leading hypothesis was that the various start and end points of identified speech in the video could be correlated with the start and end points of speech in the audio. If there was some sort of offset between the two streams, a cross-correlation technique could be applied to find the optimal allignment, and hence the time offset.
 
