@@ -46,9 +46,13 @@ This approach can be found under:
 
 ### Methodology
 
-#### External Recording
+#### Media Capturing
 
-In order to capture what a user would see and hear from the video, thereby encompassing all latency that could be introduced between the audio/video files, a recording device external to the video player must be introduced. The external recording can be handled by the same computer, or by an external device. Screen recording software such as Camtasia and OBS (for Windows, Mac) or built-in screen recording for iOS and Android can directly record the video, while using a built-in microphone to record the audio. This method relies on the use of an internal microphone, which is available in most, but not all common computing devices. This can also be carried out by an external device, which can be as sophisticated and customized as need be for the purposes of the recording. Both methods have their advantages and disadvantages, but the simplicity of on screen recording and the ability to compile all software into a convenient and deployable package beats the possible customization provided by an external device and the problem case where a user may not have an internal microphone available to use.
+In order to capture what a user would see and hear from the video, thereby encompassing all latency that could be introduced between the audio/video files, a recording device external to the video player must be introduced. The external recording can be handled by the same computer, or by an external device. Screen recording software such as Camtasia and OBS (for Windows, Mac, FFmpeg) or built-in screen recording for iOS and Android can directly record the video, while using a built-in microphone to record the audio. This method relies on the use of an internal microphone, which is available in most, but not all common computing devices. This can also be carried out by an external device, which can be as sophisticated and customized as need be for the purposes of the recording. Both methods have their advantages and disadvantages, but the simplicity of on screen recording and the ability to compile all software into a convenient and deployable package beats the possible customization provided by an external device and the problem case where a user may not have an internal microphone available to use.
+
+FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it integrated with the backend. "Insert details about FFmpeg"
+
+This functionality was built, however not directly implemented in this project's demonstration system. After some research, it was determined that most streaming services these days do not have API support for direct time injection. The FFmpeg screen capture can be used to capture a certain length of video and audio, which is processed, and then a time offset is determined. 
 
 #### Demultiplexing of Video/Audio Files
 
@@ -74,6 +78,13 @@ Following this process, a second set of test videos will be acquired. These will
 
 
 ## Results
+
+### Processing the entire clip:
+
+The
+
+## Limitations
+
 
 
 ## Timeline
