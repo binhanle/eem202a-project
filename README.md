@@ -160,7 +160,7 @@ https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sha
 
 ## Experimental Results
 
-### Processing the entire clip
+### Processing the Entire Video File
 
 The following test results come from two base videos. One of them is a clip of a CNN news report, while the other has been recorded by us. A total of 51 sets were created for each base video, corresponding to audio/video offsets of -1s to 1s in increments of 40ms. The following histogram shows the error between the computed offset and the true offset:
 
