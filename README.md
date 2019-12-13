@@ -24,20 +24,36 @@ Audio-visual synchronization is a major factor when determining the quality of a
 
 The emergence of machine learning helps boost the uses of feature-based analysis in audio-visual synchronization. A variety of machine learning models become available for extracting definitive features that can correlate audio and visual data based on the entailed events. For instance, Zhao et al. introduce a system that can locate the region of pixels on a video frame that correspond to a sound source in the audio stream [4]. Another notable example is the Lip Reading machine learning model from Torfi et al. that matches human voices to lip motions [5]. With the advantage of utilizing feature-based information to correlate audio and video streams, one can likely design a machine learning model to classify whether a streaming service has its video and audio synced at a good accuracy.  
 
-"Insert SyncNet Paper"
+"Insert SyncNet Paper Info"
 
 A couple of works had proposed their own trained machine learning systems to detect the presence of audio-visual synchronization in some given pairs of video and audio inputs [6,7]. Nevertheless, there is limited information of concrete methods that can be used to resolve the detected time offsets between a pair of video and audio inputs. Given this point, there is a need to develop a working audio-visual synchronization system that enables follow-up synchronization after the detection of a time offset.    
 
 
-## Discontinued Approaches
+## Attempted but Discontinued Approaches
 
 ### Direct CNN Approach
 
 This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The audio and video were trained separately in two convolutional neural networks (CNNs).
 
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat1.png"></img>
+</p>
+
+The reason why we did not pursue this approach is...
+
+This approach can be found under:
+"Name for Strategy 1 colab notebook"
+
 ### SyncNet Approach
 
-The sthird attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. There were multiple reasons why this approach was not selected. The first related to the. SyncNet was originally trained with . Lastly, the novelty of this approach was slightly lacking.
+The third attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. 
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"></img>
+	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
+</p>
+	
+The reason why we did not pursue this strategy is...
 
 This approach can be found under:
 "Name for Strategy 3 colab notebook"
@@ -50,9 +66,14 @@ This approach can be found under:
 
 In order to capture what a user would see and hear from the video, thereby encompassing all latency that could be introduced between the audio/video files, a recording device external to the video player must be introduced. The external recording can be handled by the same computer, or by an external device. Screen recording software such as Camtasia and OBS (for Windows, Mac, FFmpeg) or built-in screen recording for iOS and Android can directly record the video, while using a built-in microphone to record the audio. This method relies on the use of an internal microphone, which is available in most, but not all common computing devices. This can also be carried out by an external device, which can be as sophisticated and customized as need be for the purposes of the recording. Both methods have their advantages and disadvantages, but the simplicity of on screen recording and the ability to compile all software into a convenient and deployable package beats the possible customization provided by an external device and the problem case where a user may not have an internal microphone available to use.
 
-FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it integrated with the backend. "Insert details about FFmpeg"
+FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it controlled by some backend process. "Insert details about screen capture"
 
-This functionality was built, however not directly implemented in this project's demonstration system. After some research, it was determined that most streaming services these days do not have API support for direct time injection. The FFmpeg screen capture can be used to capture a certain length of video and audio, which is processed, and then a time offset is determined. 
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"></img>
+	<strong>Media Capture Technique</strong>
+</p>
+
+This functionality has been built, but was not implemented as a part of this project's demonstration system. After some research, it was determined that most streaming services these days do not have API support for backend audio delay injection. The FFmpeg screen capture can be used to capture a certain length of video and audio, which is processed, and then a time offset is determined. However, this cannot be directly reinjected. For the purposes of this project, it is assumed that the entire video file is available for processing. A future development would be the integration of the media capturing with the rest of the system when some version of the delay injection APIs are released.
 
 #### Demultiplexing of Video/Audio Files
 
@@ -60,32 +81,76 @@ In order to properly run a neural network analysis and subsequent shifting of th
 
 #### Processing, Features, and Cross-Correlation
 
-This project focuses on videos that portray a single full frontal speaker, in case where both the audio leads and lags the video. Initially, the plan was to only focus on cases where audio lags the video, but the selected approach proved to be robust. in This allows for lip speech recognition software to be used as an additional tool for audio extraction of the video file. Additionally, using existing pixel-to-sound technology [4], frames where speech actually occurs can be isolated and one can determine the various start and stop points of semi-continuous speech. Lastly, a frequency analysis on the audio will reveal certain spikes in the speaker’s speech, and can be further analyzed using speech recognition tools like CMUSphinx. These, combined with the lip recognition analysis of the video, provide the means to draw correlations between the audio and video files. By combining all of these data processing techniques, there should be sufficient features to train a neural network. The neural network itself will be a supervised learner. It is trained by inputting multiple sets of inputs (features) along with their known respective outputs, or labels (time shift between the audio/video). Subsequent test inputs with unknown outputs can then theoretically be correctly classified. The architecture of the neural network itself is a different challenge, which will be tackled in the coming weeks of this project’s development.
+This project focuses on videos that portray a single full frontal speaker, in case where both the audio leads and lags the video. Initially, the plan was to only focus on cases where audio lags the video, but the selected approach proved to be robust. For the purposes of correcting this audio and video stream offset, two major feature extraction techniques were applied: mouth aspect ratio computation (MAR) and voice activity detection (VAD). The leading hypothesis was that the various start and end points of identified speech in the video could be correlated with the start and end points of speech in the audio. If there was some sort of offset between the two streams, a cross-correlation technique could be applied to find the optimal allignment, and hence the time offset.
 
+##### Mouth Aspect Ratio
+
+The mouth aspect ratio was implemented based on the following:
+https://github.com/mauckc/mouth-open
+
+This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"></img>
+	<strong>MAR Example</strong>
+</p>
+
+The output from the MAR function is a list of values corresponding to the aspect ratio of the mouth. Its size is equal to the total number of frames. 
+
+##### Voice Activity Detection
+
+Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/vad_descriptor.png"></img>
+	<strong>VAD Detection Example. Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/</strong>
+</p>
+
+The extracted audio from the video file is fed through the VAD, and the output is a binary list corresponding to the sections of detected speech and silence. Following this, the data is resampled and smoothed to match the frame length of the video file. 
+
+
+##### Cross-Correlation
+
+The voice activity detection was able to produce
 #### Time injection
 
-Once the required time shift has been identified by the neural network output, the FFmpeg tool can be used again to inject this lead or lag in the audio file. It can also recombine the audio and video stream files, and output the synchronized video file. It will be difficult to inject the delay directly into the original video without interrupting it in some way. The time injection process itself is very quick, so any personal computer would be more than capable of executing this in a trivial amount of time, in order to keep the user experience as seamless as possible.
-	
-### Data Sets for Neural Network Training/Validation
+Once the required time shift has been identified by the neural network output, the FFmpeg tool is used again to inject the lead or lag in the audio file. The delay-injected audio and original video files are then combined.  The original video file is not modified in any way, and instead a new synchronized video file is created.
 
-As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of. For the purposes of training the system
+The following diagram summarizes the data pipeline:
 
-### Validating the Neural Network
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat2.png"></img>
+	<strong>System Block Diagram</strong>
+</p>
+
+### Data Sets for Training/Validation
+
+As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of vid. For the purposes of training the system
+
+### Training, Optimization of Parameters
+
+
+### Testing the
 
 A test set for the neural network provides the best measure of its performance. The calculated outputs (labels) can be compared to their known ones, and an error value can be computed for each set of input features. The average error across all outputs will be used to determine the best training set given this first set of data, according to k-fold cross validation. One of the primary goals is to keep this error below 40 ms for all output values, which would fall within a threshold of non-detectability from the perspective of a viewer [9]. In other words, a human would not recognize any synchronization problems if the out-of-sync audio and video are within 40ms of each other. If for some reason this goal is not achievable given the current data, the audio lead increment for creating training data will be decreased from 1ms to 0.5ms. If this does not resolve the issue, then other approaches will have to be taken (shorter increment, more data sets, more features, etc.).
 
 Following this process, a second set of test videos will be acquired. These will test the accuracy of the trained network. With a 40 ms error tolerance, it is possible to have a success rate of over 90% for all test cases. Once this has been accomplished, the next step is to test on random videos found on the internet (e.g. YouTube). They will still feature full-frontal shots of a single speaker, but this will test the versatility of the neural network.
 
 
-## Results
+## Test Results
+
 
 ### Processing the entire clip:
 
-The
+
+
+### Using a Variable Window Size
+
+"Insert computational time(window size) vs. accuracy info"
 
 ## Limitations
 
-
+## Next Steps
 
 ## Timeline
 
@@ -117,7 +182,7 @@ The
 | Define features to extract from video/audio: An, Loic, Mark | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | Build software to perform feature extraction: An | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | Cross-correlation implementation: An | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
-| Complete processing pipeline: An, Mark, Loic | | ![blue](https://placehold.it/32/3d85c6/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
+| Complete processing pipeline: An, Mark, Loic | | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | Optimization on training data: An | | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
 | **V. Create wrapper program** |
 | Define how to handle time injection: Loic | | | | ![green](https://placehold.it/32/6aa84f/000000?text=+) |
