@@ -27,7 +27,7 @@ In order to capture what a user would see and hear from the video, thereby encom
 FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it controlled by some backend process. "Insert details about screen capture"
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/MediaCapture.png"/>
+	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/media_capture.png"/>
 	<br/>
 	<strong>Media Capture Technique</strong>
 </p>
