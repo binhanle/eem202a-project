@@ -11,6 +11,10 @@ filename: method_technical
   * [Feature Processing](#feature-processing)
     * [Mouth Aspect Ratio](#mouth-aspect-ratio)
     * [Voice Activity Detection](#voice-activity-detection)
+    * [Cross-Correlation](#cross-correlation)
+  * [Time Offset Injection](#time-offset-injection)
+* [Datasets](#datasets)
+* [Training and Optimization of Parameters](#training-and-optimization-of-parameters)
 
 
 
@@ -88,7 +92,7 @@ The voice activity detection and mouth aspect ration computation both provide tw
 </p>
 <br/>
 
-#### Time injection
+#### Time Offset Injection
 
 Once the required time shift has been identified by the neural network output, the FFmpeg tool is used again to inject the lead or lag in the audio file. The delay-injected audio and original video files are then combined.  The original video file is not modified in any way, and instead a new synchronized video file is created.
 
@@ -100,10 +104,10 @@ The following diagram summarizes the data pipeline:
 	<strong>System Block Diagram</strong>
 </p>
 
-### Data Sets
+### Datasets
 
 As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
 
 https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing
 
-### Training, Optimization of Parameters
+### Training and Optimization of Parameters
