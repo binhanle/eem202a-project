@@ -1,7 +1,7 @@
 ---
-title: How To
+title: Introduction
 layout: template
-filename: howto
+filename: intro
 --- 
 
 # How to Create a Multi-page Website using Github Pages
