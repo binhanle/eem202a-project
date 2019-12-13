@@ -1,10 +1,10 @@
 ---
-title: pafatbn forever!
+title:  ECE M202A Project - Index
 layout: template
 filename: index
 --- 
 
-# patrickandfrantonarethebestninjas
+# Audio and Video Synchronization
 
 ## Created by [Patrick Huston](http://www.patrickhuston.com/) and [Franton Lin](frantonlin.com)
 
