@@ -17,7 +17,7 @@ UCLA ECE M202A Project, Fall 2019
 - Loic Maxwell
 
 ## Abstract
-Popular streaming services, such as YouTube and Twitch, often receive reports of video and audio offsets from their users. However, from their end, the server-side video and audio files are perfectly synchronized, and latencies are actually introduced unpredictably before both video and audio are outputted from these users’ edge devices. Those latencies are often non-deterministic and can only truly be resolved by performing a real-time analysis and subsequent timing corrections on both video and audio inputs at the users’ side. The purpose of this project is to quickly analyze a video’s audio cues and determine how much offset exists between the audio and video files, then perform the necessary time shift to realign them. By using audio and screen capture technology, we are able to identify what a user sees and hears. Specific features are then extracted from the captured and audio and video streams, and passed through a trained neural network to determine the required time shift. This feedback system will run continuously during a streaming session and properly correct the timings of video and audio streams as soon as an offset is identified.
+Popular streaming services, such as YouTube and Twitch, often receive reports of video and audio offsets from their users. However, from their end, the server-side video and audio files are perfectly synchronized, and latencies are actually introduced unpredictably before both video and audio are outputted from these users’ edge devices. Those latencies are often non-deterministic and can only truly be resolved by performing a real-time analysis and subsequent timing corrections on both video and audio inputs at the users’ side. The purpose of this project is to quickly analyze a video’s audio cues and determine how much offset exists between the audio and video files, then perform the necessary time shift to realign them. By using audio and screen capture technology, we are able to identify what a user sees and hears. Once this information is collected, specific features relating to the speaker's mouth aspect ratio in the video stream and the voice activity detection of the audio stream are extracted. Then, a cross-correlation to determine the time offset between the two streams, and the original video file/stream can be realigned by advancing or delaying the audio.
 
 ## Prior Work
 Audio-visual synchronization is a major factor when determining the quality of a streaming service. Traditionally, scientists work on temporal coordination between audio and video streams to minimize the impact of cumulative latencies at end-users’ multimedia devices [1,2]. However, this approach often requires knowledge of the data transmission protocol applied on audio and video streams and derivations of complicated timing equations. Moreover, the outcome of synchronization can vary if latencies are introduced randomly across the entire streaming path [3]. To bypass these complications while improving the results of audio-visual synchronization, researchers begin to incorporate feature-based analysis on audio and video streams.
@@ -85,17 +85,17 @@ This project focuses on videos that portray a single full frontal speaker, in ca
 
 ##### Mouth Aspect Ratio
 
-The mouth aspect ratio was implemented based on the following:
-https://github.com/mauckc/mouth-open
-
 This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"></img>
+	<img height="400" src="https://github.com/binhanle/eem202a-project/blob/master/Images/mar_descriptor.png"></img>
+	<br/>
 	<strong>MAR Example</strong>
 </p>
+<br/>
 
 The output from the MAR function is a list of values corresponding to the aspect ratio of the mouth. Its size is equal to the total number of frames. 
+The mouth aspect ratio implementation was inspired by the following: https://github.com/mauckc/mouth-open
 
 ##### Voice Activity Detection
 
@@ -103,15 +103,33 @@ Voice activity detectors are very common for speech processing, specifically whe
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/vad_descriptor.png"></img>
-	<strong>VAD Detection Example. Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/</strong>
+	<br/>
+	<strong>VAD Detection Example <br/> Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/</strong>
 </p>
+<br/>
 
-The extracted audio from the video file is fed through the VAD, and the output is a binary list corresponding to the sections of detected speech and silence. Following this, the data is resampled and smoothed to match the frame length of the video file. 
+The extracted audio from the video file is fed through the VAD, and the output is a binary list corresponding to the sections of detected speech and silence. Following this, the data is resampled and smoothed to match the number of frames in the video file. 
+The implementation was inspired by the following: https://github.com/wiseman/py-webrtcvad
 
 
 ##### Cross-Correlation
 
-The voice activity detection was able to produce
+The voice activity detection and mouth aspect ration computation both provide two lists of the same size. A cross-correlation is run to determine the optimal allignment between these two vectors, and determine what time offset (if any) exists between them. The following two figures demonstrate an example of this process:
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/av_data.png"></img>
+	<br/>
+	<strong>MAR and VAD Output for 0ms Offset Video</strong>
+</p>
+<br/>
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/cross_corr.png"></img>
+	<br/>
+	<strong>Cross-Correlation of Video and Audio Features for 0ms Offset Video</strong>
+</p>
+<br/>
+
 #### Time injection
 
 Once the required time shift has been identified by the neural network output, the FFmpeg tool is used again to inject the lead or lag in the audio file. The delay-injected audio and original video files are then combined.  The original video file is not modified in any way, and instead a new synchronized video file is created.
@@ -123,24 +141,39 @@ The following diagram summarizes the data pipeline:
 	<strong>System Block Diagram</strong>
 </p>
 
-### Data Sets for Training/Validation
+### Data Sets
 
-As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of vid. For the purposes of training the system
+As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
+
+"Links to datasets"
 
 ### Training, Optimization of Parameters
 
 
-### Testing the
-
-A test set for the neural network provides the best measure of its performance. The calculated outputs (labels) can be compared to their known ones, and an error value can be computed for each set of input features. The average error across all outputs will be used to determine the best training set given this first set of data, according to k-fold cross validation. One of the primary goals is to keep this error below 40 ms for all output values, which would fall within a threshold of non-detectability from the perspective of a viewer [9]. In other words, a human would not recognize any synchronization problems if the out-of-sync audio and video are within 40ms of each other. If for some reason this goal is not achievable given the current data, the audio lead increment for creating training data will be decreased from 1ms to 0.5ms. If this does not resolve the issue, then other approaches will have to be taken (shorter increment, more data sets, more features, etc.).
-
-Following this process, a second set of test videos will be acquired. These will test the accuracy of the trained network. With a 40 ms error tolerance, it is possible to have a success rate of over 90% for all test cases. Once this has been accomplished, the next step is to test on random videos found on the internet (e.g. YouTube). They will still feature full-frontal shots of a single speaker, but this will test the versatility of the neural network.
-
-
 ## Test Results
 
-
 ### Processing the entire clip:
+
+The following test results come from two base videos. One of them is a clip of a CNN news report, while the other has been recorded by us. A total of 51 sets were created for each base video, corresponding to audio/video offsets of -1s to 1s in increments of 40ms. The following histogram shows the error between the computed offset and the true offset:
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_no_thresh.png"></img>
+	<strong>System Block Diagram</strong>
+</p>
+<br/>
+
+The error in the internet video's synchronization was consistently one frame, while the error in our own video's synchronization was consistently two frames. The fact that the synchronization process was able to achieve such a low error demonstrates the existence of a strong correlation between a speaker's mouth aspect ratio and the detected voice activity from the audio stream. However, the consistency of the error reveals some information that we had not previously considered. There is actually a delay between the time when a speaker opens their mouth and when sound actually comes out. This delay seems to depend on the speaker, but it may be possible to compensate for this error by computing an average across multiple videos with different speakers.
+
+<br/>
+
+A threshold technique was initially used to assign a binary value to the MAR. The binary value for a particular frame would determine whether the speaker's mouth was open or closed during that time, according to a specific threshold. In the optimization process described above, this threshold value was included in the optimization over the VAD aggressiveness value. However, the conversion from a continuous MAR to a binary MAR resulted in the unnecessary loss of information. The histogram below shows the computed error with a binary MAR, using the same dataset as the results above:
+
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_thresh.png"></img>
+	<strong>System Block Diagram</strong>
+</p>
+<br/>
 
 
 
@@ -204,7 +237,7 @@ Following this process, a second set of test videos will be acquired. These will
 - Implement delay compensation for a common video streaming service
 
 ## Deliverables
-- The training/validation set -- full-frontal recordings of Loic, An, and Mark
+- All datasets -- full-frontal recordings of Loic, An, and Mark, and full-frontal online recordings
 - Scripts that demultiplex audio/video files, preprocesses the audio/video streams, and inject time delay into video streams
 - Suitable neural network architecture for determining time offset
 - Program that restores audio/video synchronization offline
