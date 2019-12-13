@@ -4,59 +4,17 @@ layout: template
 filename: index
 --- 
 
-# How to Create a Multi-page Website using Github Pages
+## Table of Contents
+* [Abstract](#abstract)
+* [Prior Work](#prior-work)
 
-### To Create the Template
-1. Create the page normally following [pages.github.com](https://pages.github.com), but use `CONTENT` as the content of the page
-2. Choose a theme and publish the page
-3. Fetch and checkout the gh-pages branch on your local repository
-4. Create a directory `_layouts` in the repository
-5. Rename `index.html` to `template.html` and move it into the `_layouts` directory
-6. Open `template.html` and replace the `<p>CONTENT</p>` placeholder with {% raw %}`{{ content }}`{% endraw %} (this is [Jekyll](https://jekyllrb.com) syntax to grab the content from the MarkDown pages you will create)
-7. Identify the navigation/button section of HTML
-8. Copy one navigation/button item (probably a `<a href="">` or similar tag)
-9. Insert this code at the top of the navigation/button item section:
 
-```
-{% raw %}
-{% for page in site.pages %}
-    <a href={{ page.filename }}>{{ page.title }}</a>
-{% endfor %}
-{% endraw %}
-```
+## Abstract
+Popular streaming services, such as YouTube and Twitch, often receive reports of video and audio offsets from their users. However, from their end, the server-side video and audio files are perfectly synchronized, and latencies are actually introduced unpredictably before both video and audio are outputted from these users’ edge devices. Those latencies are often non-deterministic and can only truly be resolved by performing a real-time analysis and subsequent timing corrections on both video and audio inputs at the users’ side. The purpose of this project is to quickly analyze a video’s audio cues and determine how much offset exists between the audio and video files, then perform the necessary time shift to realign them. By using audio and screen capture technology, we are able to identify what a user sees and hears. Once this information is collected, specific features relating to the speaker's mouth aspect ratio in the video stream and the voice activity detection of the audio stream are extracted. Then, a cross-correlation to determine the time offset between the two streams, and the original video file/stream can be realigned by advancing or delaying the audio.
 
-To match your theme, paste the copied navigation/button item in place of `<a href={{ page.filename }}>{{ page.title }}</a>`, but use `{{ page.filename }}` for the href and `{{ page.title }}` for the content (as shown in the example in step 9)
+## Prior Work
+Audio-visual synchronization is a major factor when determining the quality of a streaming service. Traditionally, scientists work on temporal coordination between audio and video streams to minimize the impact of cumulative latencies at end-users’ multimedia devices [1,2]. However, this approach often requires knowledge of the data transmission protocol applied on audio and video streams and derivations of complicated timing equations. Moreover, the outcome of synchronization can vary if latencies are introduced randomly across the entire streaming path [3]. To bypass these complications while improving the results of audio-visual synchronization, researchers begin to incorporate feature-based analysis on audio and video streams.
 
-### To Create Your First Page
-1. Make a new file called `index.md` in your repository
-2. Copy the content of your `readme.md` or write a new home page in MarkDown into this file
-3. At the top of this file, add the following:
+The emergence of machine learning helps boost the uses of feature-based analysis in audio-visual synchronization. A variety of machine learning models become available for extracting definitive features that can correlate audio and visual data based on the entailed events. For instance, Zhao et al. introduce a system that can locate the region of pixels on a video frame that correspond to a sound source in the audio stream [4]. Another notable example is the Lip Reading machine learning model from Torfi et al. that matches human voices to lip motions [5]. With the advantage of utilizing feature-based information to correlate audio and video streams, one can likely design a machine learning model to classify whether a streaming service has its video and audio synced at a good accuracy.
 
-```
----
-title: PAGE TITLE HERE
-layout: template
-filename: NAME OF THIS .md FILE HERE
---- 
-```
-
-Commit your changes and push them to the gh-pages branch
-
-Now, when you go to `YOURGITHUBNAME.github.io/YOURPROJECTNAME`, you should see the contents of your index.md formatted with the theme that you chose.
-
-### To Create Additional Pages
-1. Make a new file called `PAGENAME.md` in your repository (where PAGENAME is the name of your new page)
-2. Write the content for this new page in MarkDown
-3. At the top of this file, add the following:
-
-```
----
-title: PAGE TITLE HERE
-layout: template
-filename: NAME OF THIS .md FILE HERE
---- 
-```
-
-Commit your changes and push them to the gh-pages branch
-
-Now, when you go to `YOURGITHUBNAME.github.io/YOURPROJECTNAME`, you should see a link to your new page. When you click this link, you should see your new page formatted with the theme that you chose.
+A couple of works had proposed their own trained machine learning systems to detect the presence of audio-visual synchronization in some given pairs of video and audio inputs [6,7]. Nevertheless, there is limited information of concrete methods that can be used to resolve the detected time offsets between a pair of video and audio inputs. Given this point, there is a need to develop a working audio-visual synchronization system that enables follow-up synchronization after the detection of a time offset.    
