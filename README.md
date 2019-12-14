@@ -60,7 +60,7 @@ This approach can be found under:
 
 ### SyncNet Approach
 
-The third attemtped strategy was based on the SyncNet paper (Chung and Zisserman). The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
+The third attemtped strategy was based on the SyncNet paper [7]. The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"/>
@@ -68,10 +68,10 @@ The third attemtped strategy was based on the SyncNet paper (Chung and Zisserman
 	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
 </p>
 	
-We did not pursue this strategy for the following reasons:
+This strategy was not pursued for the following reasons:
 
-- We did not have adequate resources. The GPU provided by Google Colab barely had enough memory for training audio and video pairs from one video. In contrast, the authors trained SyncNet on hundreds of hours of video using high-end hardware.
-- Although we implemented the SyncNet architecture as described in the paper, the model overfit. Possible factors include not enough training data, an unforeseen bug in the pair generation code, and poor video quality.
+- We had inadequate resources. The GPU provided by Google Colab barely had enough memory for training audio and video pairs from one video. In contrast, the authors trained SyncNet on hundreds of hours of video using high-end hardware.
+- Although the SyncNet architecture was implemented on Google Colab using the parameters described in the paper, the model overfit. Possible factors include not enough training data, an unforeseen bug in the pair generation code, and poor video quality.
 
 This approach can be found under:
 "Name for Strategy 3 colab notebook"
@@ -202,8 +202,15 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 
 
 ### Using a Variable Window Size
+A real-time implementation would not have access to the entire video. In light of this, the system was evaluated on sliding windows of size 1 to 12 seconds rather than whole clips. As before, the maximum offset between any audio-video pair was 25 frames in either direction. Audio-video pairs whose VAD component stayed constant were discarded as no useful information could be gleaned from the audio. As expected, the performance improved with larger window sizes:
 
-"Insert computational time(window size) vs. accuracy info"
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_var_win_size.png"></img>
+	<br/>
+	<strong>Error using Variable Window Size</strong>
+</p>
+<br/>
 
 
 ### Key Findings
@@ -215,7 +222,7 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 ## Strength and Weakness
 The strategy of identifying speaking & non-speaking portions from open mouth and voice activity then correlating the audio and video streams allows fast processing speed for for time offset calculations. By considering the nature of injecting time offsets, this synchronization strategy ideally can work on any time offset length between a pair of audio and video streams. In addition, the mechanism of time offset calulation is intuitive and easy to understand. It appears that audiovisual synchronization is possible when given decisive features from the audio and video streams.
 
-Because of its' simplicity, the presented sychronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this sychronization strategy is that the speaker cannot lose his or her forntal pose or temproraily disppear from the scenes. These situations can potentially cause missing information in the video stram and thus reduce the performance of the audiovisual synchronization by the presented system. 
+Because of its simplicity, the presented sychronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this sychronization strategy is that the speaker cannot lose his or her frontal pose or temproraily disppear from the scenes. These situations can potentially cause missing information in the video stram and thus reduce the performance of the audiovisual synchronization by the presented system. 
 
 
 ## Future Directions
