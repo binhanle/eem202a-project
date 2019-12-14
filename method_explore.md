@@ -17,8 +17,9 @@ filename: method_explore
 
 This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The model consists of two CNNs, a concatenation step to join the branches, several fully-connected layers, and a linear output neuron that represents the frame offset between the audio and video inputs. The CNNs were trained simultaneously on video frame windows and spectrograms from their corresponding audio segments.
 
-![CNN Architecture](/Images/strat1.png)
 <p align="center">
+	<img src="https://binhanle.github.io/eem202a-project/Images/strat1.png"/>
+	<br/>
 	<strong>CNN Architecture</strong>
 </p>
 
@@ -40,8 +41,9 @@ This approach can be found under:
 
 The third attemtped strategy was based on the SyncNet paper [7]. The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
 
-![SyncNet Architecture](/Images/strat3.png)
 <p align="center">
+	<img src="https://binhanle.github.io/eem202a-project/Images/strat3.png"/>
+	<br/>
 	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
 </p>
 	
