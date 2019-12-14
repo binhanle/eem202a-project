@@ -23,7 +23,7 @@ filename: intent
 
 ## Deliverables
 - All datasets -- full-frontal recordings of Loic, An, and Mark, and full-frontal online recordings
-- Scripts that demultiplex audio/video files, preprocesses the audio/video streams, and inject time delay into video streams
+- Scripts that demultiplex audio/video files, preprocess the audio/video streams, and inject time delay into video streams
 - Suitable neural network architecture for determining time offset
 - Program that restores audio/video synchronization offline
 - Complete demonstration of synchronizing audio and video on a laggy live stream
