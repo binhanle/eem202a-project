@@ -11,11 +11,11 @@ filename: intent
 * [Success Metrics](#success-metrics)
 
 
-#### Primary Goals:
+## Primary Goals:
 - Develop a machine-learning based model to properly recognize and quantify video and audio time offsets for videos of a single speaker in full-frontal view, with an error less than 40ms <strong>Completed</strong>
 - Define a performance spectrum of the model for varying delays between the audio and video streams, to determine the range of its best use case <strong>Completed</strong>
 
-#### Stretch Goals:
+## Stretch Goals:
 - Create a backend program to run in real time, to capture the on screen video, determination in time offset, and make the necessary correction, all automatically <strong>Completed</strong>
 - Expand analysis to similar video types, acquired from various web sources (YouTube) <strong>Completed</strong>
 - Implement delay compensation for a common video streaming service <strong>Aborted</strong>
