@@ -16,7 +16,7 @@ conda create -n avsync python=3.6
 conda activate avsync
 ```
 
-## Install required packages:
+## Install required packages
 ```
 pip install google-api-python-client
 pip install oauth2client
