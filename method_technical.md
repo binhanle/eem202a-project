@@ -32,7 +32,7 @@ In order to capture what a user see and hear from a stream service, thereby enco
 
 It is possible to record only a portion of the targeted video streaming using the presented Python screen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach presented in this project.
 
-This approach can be found under: [Click here](https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK)
+This approach can be found under: [Media Capture Technique](https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK)
 
 #### Demultiplexing of Video and Audio Files
 
@@ -108,7 +108,7 @@ The following diagram summarizes the data pipeline:
 
 As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub Python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
 
-[Click here](https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing)
+[Data Folder](https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing)
 
 ### Training and Optimization of Parameters
 
@@ -116,4 +116,4 @@ The model was trained to optimize two parameters: VAD aggressiveness and MAR thr
 
 
 This approach can be found under:
-[Click here](https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91)
+[Strategy 2 on Google Colab](https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91)
