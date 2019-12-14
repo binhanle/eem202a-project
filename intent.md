@@ -9,7 +9,7 @@ filename: intent
 * [Stretch Goals](#stretch-goals)
 * [Deliverables](#deliverables)
 * [Success Metrics](#success-metrics)
-* [Project Timeline](#timeline)
+* [Project Timeline](#project-timeline)
 
 
 ## Primary Goals:
@@ -32,10 +32,10 @@ filename: intent
 Dataset Google drive link found under Datasets section.
 
 Demo video, local machine test script with readme, final presentation video found here:
-[Click here](https://drive.google.com/drive/folders/1bkACCd296XZr6WN9FIi9VbwKCZhVBETt?usp=sharing)
+[Demo Files](https://drive.google.com/drive/folders/1bkACCd296XZr6WN9FIi9VbwKCZhVBETt?usp=sharing)
 
 YouTube Link to Video:
-[Click here](https://youtu.be/VBxVKRHk9VY)
+[EEM202A Final Project Video](https://youtu.be/VBxVKRHk9VY)
 
 ## Success Metrics
 - Errors in software (potentially a major obstacle as many packages and dependencies need to be installed/utilized correctly)
