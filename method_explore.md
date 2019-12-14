@@ -36,6 +36,8 @@ Therefore, it is likely that our initial architecture is not suitable for this p
 
 This approach can be found under:
 https://colab.research.google.com/drive/1GZrofHEIjAzbcZOEZwBZcq4q4iUGIX6w
+<a href="https://colab.research.google.com/drive/1GZrofHEIjAzbcZOEZwBZcq4q4iUGIX6w">Click Here</a> 
+
 
 ### SyncNet-Inspired Approach
 
