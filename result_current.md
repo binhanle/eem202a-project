@@ -41,8 +41,15 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 
 
 ### Using a Variable Window Size
+A real-time implementation would not have access to the entire video. In light of this, the system was evaluated on sliding windows of size 1 to 12 seconds rather than whole videos. As before, the maximum offset between any audio-video pair was 25 frames in either direction. Audio-video pairs whose VAD component stayed constant were discarded as no useful information could be gleaned from the audio. As expected, the performance improved with larger window sizes:
 
-"Insert computational time(window size) vs. accuracy info"
+
+<p align="center">
+	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_var_win_size.png"></img>
+	<br/>
+	<strong>Error using Variable Window Size</strong>
+</p>
+<br/>
 
 
 ### Key Findings
