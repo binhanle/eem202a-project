@@ -111,3 +111,7 @@ https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sha
 ### Training and Optimization of Parameters
 
 The model was trained to optimize two parameters: VAD aggressiveness and MAR threshold. The MAR values were converted to binary based on the threshold for consistency with the binary VAD data. The loss function is the absolute difference between the predicted offset and the actual offset. The optimization routine iterates through all possible VAD aggressiveness values (integers 0 through 3) and utilizes scipy's optimize.minimize_scalar function to minimize the loss on the MAR threshold. The combination of VAD aggressiveness and MAR threshold that yields the minimum loss is returned. Later, we found that not converting the MARs to binary resulted in a better fit. The model was then optimized again only for the VAD aggressiveness.
+
+
+This approach can be found under:
+https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91
