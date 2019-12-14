@@ -47,7 +47,7 @@ This project focuses on videos that portray a single full frontal speaker, in ca
 This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
 
 <p align="center">
-	<img height="400" src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/mar_descriptor.png"/>
+	<img height="400" src="https://binhanle.github.io/eem202a-project/Images/mar_descriptor.png"/>
 	<br/>
 	<strong>MAR Example</strong>
 </p>
@@ -61,7 +61,7 @@ The mouth aspect ratio implementation was inspired by the following: https://git
 Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/vad_descriptor.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/vad_descriptor.png"></img>
 	<br/>
 	<strong>VAD Detection Example 
 		<br/> 
@@ -79,14 +79,14 @@ The implementation was inspired by the following: https://github.com/wiseman/py-
 The voice activity detection and mouth aspect ration computation both provide two lists of the same size. A cross-correlation is run to determine the optimal allignment between these two vectors, and determine what time offset (if any) exists between them. The following two figures demonstrate an example of this process:
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/av_data.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/av_data.png"></img>
 	<br/>
 	<strong>MAR and VAD Output for 0ms Offset Video</strong>
 </p>
 <br/>
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/cross_corr.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/cross_corr.png"></img>
 	<br/>
 	<strong>Cross-Correlation of Video and Audio Features for 0ms Offset Video</strong>
 </p>
@@ -99,7 +99,7 @@ Once the required time shift has been identified by the neural network output, t
 The following diagram summarizes the data pipeline:
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/gh-pages/Images/strat2.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/strat2.png"></img>
 	<br/>
 	<strong>System Block Diagram</strong>
 </p>
