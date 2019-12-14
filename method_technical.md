@@ -22,9 +22,7 @@ filename: method_technical
 
 #### Media Capturing
 
-In order to capture what a user would see and hear from the video, thereby encompassing all latency that could be introduced between the audio/video files, a recording device external to the video player must be introduced. The external recording can be handled by the same computer, or by an external device. Screen recording software such as Camtasia and OBS (for Windows, Mac, FFmpeg) or built-in screen recording for iOS and Android can directly record the video, while using a built-in microphone to record the audio. This method relies on the use of an internal microphone, which is available in most, but not all common computing devices. This can also be carried out by an external device, which can be as sophisticated and customized as need be for the purposes of the recording. Both methods have their advantages and disadvantages, but the simplicity of on screen recording and the ability to compile all software into a convenient and deployable package beats the possible customization provided by an external device and the problem case where a user may not have an internal microphone available to use.
-
-FFmpeg was selected for screen recording, due to its versatility across operating systems and the ability to have it controlled by some backend process. "Insert details about screen capture"
+In order to capture what a user see and hear from a stream service, thereby encompassing all latency that could be introduced between the audio/video files, a recording device/software independent from the player of the streaming service must be introduced. For streaming services accessed on a computer or a laptop, the recording can be handled by a screen + audio recording software on the same device or by an external device such as a mobile phone or a video camera. We decided to work screen + audio recording software (e.g. Camtasia, OBS, ShareX, python codes for screen recording, etc.) as this approach gives us an easier time to maintain the deployed codes, libraries, and  packages. After comparing the performance of multiple screen + audio recording software, we selected FFmpeg due to its versatility across operating systems and the ability to have it controlled by some backend process. By incorporating FFmpeg into python via subprocess calls and adding codes that allows use to select the region of screen for recording, we provie a piece of python program that achieve good quality in screen + audio recording.
 
 <p align="center">
 	<img src="https://binhanle.github.io/eem202a-project/Images/media_capture.png"/>
@@ -32,7 +30,7 @@ FFmpeg was selected for screen recording, due to its versatility across operatin
 	<strong>Media Capture Technique</strong>
 </p>
 
-This functionality has been built, but was not implemented as a part of this project's demonstration system. After some research, it was determined that most streaming services these days do not have API support for backend audio delay injection. The FFmpeg screen capture can be used to capture a certain length of video and audio, which is processed, and then a time offset is determined. However, this cannot be directly reinjected. For the purposes of this project, it is assumed that the entire video file is available for processing. A future development would be the integration of the media capturing with the rest of the system when some version of the delay injection APIs are released.
+It is possible to record only a portion of the targeted video streaming using the presented python screeen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach prsented in this project.
 
 #### Demultiplexing of Video and Audio Files
 
