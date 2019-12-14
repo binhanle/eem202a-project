@@ -11,7 +11,7 @@ Website URL: https://binhanle.github.io/eem202a-project/
 * [Prior Work](#prior-work)
 * [Technical Approach (Methodology, Data, Validation)](#technical-approach-methodology-data-validation)
 * [Results](#results)
-* [Strength and Weakness](#strength-and-weakness)
+* [Strengths and Weaknesses](#strengths-and-weaknesses)
 * [Future Directions](#future-directions)
 * [Timeline](#timeline)
 * [Deliverables](#deliverables)
@@ -62,7 +62,7 @@ https://colab.research.google.com/drive/1GZrofHEIjAzbcZOEZwBZcq4q4iUGIX6w
 
 ### SyncNet Approach
 
-The third attemtped strategy was based on the SyncNet paper [7]. The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
+The third attempted strategy was based on the SyncNet paper [7]. The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"/>
@@ -84,7 +84,7 @@ https://colab.research.google.com/drive/1bieVV__AR7KXmUHegM60qr_z2aPoyEgV
 
 #### Media Capturing
 
-In order to capture what a user see and hear from a stream service, thereby encompassing all latency that could be introduced between the audio/video files, a recording device/software independent from the player of the streaming service must be introduced. For streaming services accessed on a computer or a laptop, the recording can be handled by a screen + audio recording software on the same device or by an external device such as a mobile phone or a video camera. We decided to work screen + audio recording software (e.g. Camtasia, OBS, ShareX, python codes for screen recording, etc.) as this approach gives us an easier time to maintain the deployed codes, libraries, and  packages. After comparing the performance of multiple screen + audio recording software, we selected FFmpeg due to its versatility across operating systems and the ability to have it controlled by some backend process. By incorporating FFmpeg into python via subprocess calls, including virtual audio and screen cpaturers, and adding codes that allows use to select the region of screen for recording, we provide a piece of python program that achieve good quality in screen + audio recording.
+In order to capture what a user see and hear from a stream service, thereby encompassing all latency that could be introduced between the audio/video files, a recording device/software independent from the player of the streaming service must be introduced. For streaming services accessed on a computer or a laptop, the recording can be handled by a screen + audio recording software on the same device or by an external device such as a mobile phone or a video camera. We decided to work screen + audio recording software (e.g. Camtasia, OBS, ShareX, Python codes for screen recording, etc.) as this approach gives us an easier time to maintain the deployed codes, libraries, and  packages. After comparing the performance of multiple screen + audio recording software, we selected FFmpeg due to its versatility across operating systems and the ability to have it controlled by some backend process. By incorporating FFmpeg into Python via subprocess calls, including virtual audio and screen capturers, and adding codes that allows use to select the region of screen for recording, we provide a piece of Python program that achieve good quality in screen + audio recording.
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/media_capture.png"/>
@@ -92,7 +92,7 @@ In order to capture what a user see and hear from a stream service, thereby enco
 	<strong>Media Capture Technique</strong>
 </p>
 
-It is possible to record only a portion of the targeted video streaming using the presented python screeen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach prsented in this project.
+It is possible to record only a portion of the targeted video streaming using the presented Python screen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach presented in this project.
 
 This approach can be found under: https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK
 
@@ -107,7 +107,7 @@ This project focuses on videos that portray a single full frontal speaker, in ca
 
 ##### Mouth Aspect Ratio
 
-This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
+This calculation is broken up into two steps: the face detection and the MAR computation. The dlib Python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
 
 <p align="center">
 	<img height="400" src="https://github.com/binhanle/eem202a-project/blob/master/Images/mar_descriptor.png"/>
@@ -121,7 +121,7 @@ The mouth aspect ratio implementation was inspired by the following: https://git
 
 ##### Voice Activity Detection
 
-Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
+Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the Python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/vad_descriptor.png"></img>
@@ -169,7 +169,7 @@ The following diagram summarizes the data pipeline:
 
 ### Data Sets
 
-As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
+As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub Python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
 
 https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing
 
@@ -227,14 +227,14 @@ A real-time implementation would not have access to the entire video. In light o
 * There is a consistent offset between when a person opens his or her mouth and when he or she start/resume the talk
 
 
-## Strength and Weakness
-The strategy of identifying speaking & non-speaking portions from open mouth and voice activity then correlating the audio and video streams allows fast processing speed for for time offset calculations. By considering the nature of injecting time offsets, this synchronization strategy ideally can work on any time offset length between a pair of audio and video streams. In addition, the mechanism of time offset calulation is intuitive and easy to understand. It appears that audiovisual synchronization is possible when given decisive features from the audio and video streams.
+## Strengths and Weaknesses
+The strategy of identifying speaking & non-speaking portions from open mouth and voice activity then correlating the audio and video streams allows fast processing speed for time offset calculations. By considering the nature of injecting time offsets, this synchronization strategy ideally can work on any time offset length between a pair of audio and video streams. In addition, the mechanism of time offset calculation is intuitive and easy to understand. It appears that audiovisual synchronization is possible when given decisive features from the audio and video streams.
 
-Because of its simplicity, the presented sychronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this sychronization strategy is that the speaker cannot lose his or her frontal pose or temproraily disppear from the scenes. These situations can potentially cause missing information in the video stram and thus reduce the performance of the audiovisual synchronization by the presented system. 
+Because of its simplicity, the presented synchronization strategy is limited to video files that feature single-person, frontal-pose talks. Moreover, the system expects a speaker make pauses in his or her speech so that multiple starting and ending points of open mouth and human voice can be established. Another constraint of this synchronization strategy is that the speaker cannot lose his or her frontal pose or temporarily disappear from the scenes. These situations can potentially cause missing information in the video stream and thus reduce the performance of the audiovisual synchronization by the presented system. 
 
 
 ## Future Directions
-The presented work can be expanded by including more decisive features for audiovisual correlation. The team will pursue further research in sound source recognitions so that multi-speaker scenarios can be covered the presented audiovisual synchronization strategy. Further investigation on correlating lip movements with phonemes can also be pursued for increasing the chance of correctly pairing a human voice with a speaker. Such a imporvement can be made to avoid mismatches of open mouths and voice acitivties in multi-speaker video files. For addressing the consistent offset between open mouth and human voice, the team will explore literatures that document visual cues in human speech. After idenifying the range of time offsets between open mouth motion and human voice acitivity, the team will determine equation(s) that can negate this innate discrepancy.
+The presented work can be expanded by including more decisive features for audiovisual correlation. The team will pursue further research in sound source recognitions so that multi-speaker scenarios can be covered the presented audiovisual synchronization strategy. Further investigation on correlating lip movements with phonemes can also be pursued for increasing the chance of correctly pairing a human voice with a speaker. Such a improvement can be made to avoid mismatches of open mouths and voice activities in multi-speaker video files. For addressing the consistent offset between open mouth and human voice, the team will explore literatures that document visual cues in human speech. After identifying the range of time offsets between open mouth motion and human voice activity, the team will determine equation(s) that can negate this innate discrepancy.
 
 
 ## Timeline
@@ -287,7 +287,7 @@ The presented work can be expanded by including more decisive features for audio
 
 ## Deliverables
 - All datasets -- full-frontal recordings of Loic, An, and Mark, and full-frontal online recordings
-- Scripts that demultiplex audio/video files, preprocesses the audio/video streams, and inject time delay into video streams
+- Scripts that demultiplex audio/video files, preprocess the audio/video streams, and inject time delay into video streams
 - Suitable neural network architecture for determining time offset
 - Program that restores audio/video synchronization offline
 - Complete demonstration of synchronizing audio and video on a laggy live stream
