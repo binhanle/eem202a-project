@@ -8,7 +8,7 @@ filename: method_explore
 ## Table of Contents
 * [Discontinued Approaches](#discontinued-approaches)
   * [Direct CNN Approach](#direct-cnn-approach)
-  * [SyncNet-Inspired Approach](#syncNet-inspired-approach)
+  * [SyncNet-Inspired Approach](#syncnet-inspired-approach)
 
 
 ## Discontinued Approaches
