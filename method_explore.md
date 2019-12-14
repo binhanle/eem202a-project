@@ -29,8 +29,7 @@ This approach can be found under:
 "Name for Strategy 1 colab notebook"
 
 ### SyncNet-Inspired Approach
-
-The third attemtped strategy was based on the SyncNet paper. They were able to accomplish audio-video synchronization for a window size of only 5 frames. 
+The third attemtped strategy was based on the SyncNet paper [7]. The authors were able to accomplish audio-video synchronization at an accuracy of 81% with a window size of only 5 frames. SyncNet consists of two similar DNNs that output size-256 vectors. The inputs are a five-frame window and the MFCC features of the corresponding audio segment. The L2 distance between the output vectors determines whether an audio and video pair is synchronized. SyncNet is trained on genuine (in-sync) and false (out-of-sync) pairs. To find the audio-video offset of a particular video, one must extract audio and video pairs from the video, feed them to SyncNet, average the L2 distances over a set time, and repeat by manually sliding the audio and/or the video stream. The offset that returns the least average L2 distance is most likely the correct one.
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat3.png"/>
@@ -38,7 +37,10 @@ The third attemtped strategy was based on the SyncNet paper. They were able to a
 	<strong>Source: https://www.robots.ox.ac.uk/~vgg/publications/2016/Chung16a/chung16a.pdf</strong>
 </p>
 	
-The reason why we did not pursue this strategy is...
+This strategy was not pursued for the following reasons:
+
+- We had inadequate resources. The GPU provided by Google Colab barely had enough memory for training audio and video pairs from one video. In contrast, the authors trained SyncNet on hundreds of hours of video using high-end hardware.
+- Although the SyncNet architecture was implemented on Google Colab using the parameters described in the paper, the model overfit. Possible factors include not enough training data, an unforeseen bug in the pair generation code, and poor video quality.
 
 This approach can be found under:
 "Name for Strategy 3 colab notebook"
