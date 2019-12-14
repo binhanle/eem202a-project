@@ -32,8 +32,7 @@ In order to capture what a user see and hear from a stream service, thereby enco
 
 It is possible to record only a portion of the targeted video streaming using the presented Python screen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach presented in this project.
 
-This approach can be found under: https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK
-<a href="https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK">Click Here</a> 
+This approach can be found under: [Click here](https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK)
 
 #### Demultiplexing of Video and Audio Files
 
@@ -55,7 +54,7 @@ This calculation is broken up into two steps: the face detection and the MAR com
 <br/>
 
 The output from the MAR function is a list of values corresponding to the aspect ratio of the mouth. Its size is equal to the total number of frames. 
-The mouth aspect ratio implementation was inspired by the following: https://github.com/mauckc/mouth-open
+The mouth aspect ratio implementation was inspired by the following: [mouth-open on GitHub](https://github.com/mauckc/mouth-open)
 
 ##### Voice Activity Detection
 
@@ -66,13 +65,13 @@ Voice activity detectors are very common for speech processing, specifically whe
 	<br/>
 	<strong>VAD Detection Example 
 		<br/> 
-		Source: http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/
+		Source: <a href="http://practicalcryptography.com/miscellaneous/machine-learning/voice-activity-detection-vad-tutorial/">Voice Activity Detection (VAD) Tutorial</a>
 	</strong>
 </p>
 <br/>
 
 The extracted audio from the video file is fed through the VAD, and the output is a binary list corresponding to the sections of detected speech and silence. Following this, the data is resampled and smoothed to match the number of frames in the video file. 
-The implementation was inspired by the following: https://github.com/wiseman/py-webrtcvad
+The implementation was inspired by the following: [py-webrtcvad on GitHub](https://github.com/wiseman/py-webrtcvad)
 
 
 ##### Cross-Correlation
@@ -109,7 +108,7 @@ The following diagram summarizes the data pipeline:
 
 As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub Python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
 
-https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing
+[Click here](https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing)
 
 ### Training and Optimization of Parameters
 
@@ -117,5 +116,4 @@ The model was trained to optimize two parameters: VAD aggressiveness and MAR thr
 
 
 This approach can be found under:
-https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91
-<a href="https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91">Click Here</a> 
+[Click here](https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91)
