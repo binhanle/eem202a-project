@@ -36,7 +36,7 @@ A couple of works had proposed their own trained machine learning systems to det
 
 ### Direct CNN Approach
 
-This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The audio and video were trained separately in two convolutional neural networks (CNNs).
+This was the first attempted approach towards solving the audio/video synchronization problem. This was also the one highlighted in the initial proposal. The model consists of two CNNs, a concatenation step to join the branches, several fully-connected layers, and a linear output neuron that represents the frame offset between the audio and video inputs. The CNNs were trained simultaneously on video frame windows and spectrograms from their corresponding audio segments.
 
 <p align="center">
 	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/strat1.png" />
@@ -44,7 +44,16 @@ This was the first attempted approach towards solving the audio/video synchroniz
 	<strong>CNN Architecture</strong>
 </p>
 
-The reason why we did not pursue this approach is...
+We did not pursue this approach because initially, the model was trained on grayscale faces, which filled the neural network with irrelevant information besides the mouth movement. Despite applying the following fixes, the model could not achieve an adequate fit:
+
+- Cropping out the mouth
+- Using the difference between frames instead of the frames themselves
+- Increasing the window size
+- Adding more convolutional and fully-connected layers
+- Training on only one video
+- Limiting the maximum offset
+
+Therefore, it is likely that our initial architecture is not suitable for this problem.
 
 This approach can be found under:
 "Name for Strategy 1 colab notebook"
