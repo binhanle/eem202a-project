@@ -32,10 +32,10 @@ filename: intent
 Dataset Google drive link found under Datasets section.
 
 Demo video, local machine test script with readme, final presentation video found here:
-https://drive.google.com/drive/folders/1bkACCd296XZr6WN9FIi9VbwKCZhVBETt?usp=sharing
+[Click here](https://drive.google.com/drive/folders/1bkACCd296XZr6WN9FIi9VbwKCZhVBETt?usp=sharing)
 
 YouTube Link to Video:
-https://youtu.be/VBxVKRHk9VY
+[Click here](https://youtu.be/VBxVKRHk9VY)
 
 ## Success Metrics
 - Errors in software (potentially a major obstacle as many packages and dependencies need to be installed/utilized correctly)
