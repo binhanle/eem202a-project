@@ -35,7 +35,7 @@ We did not pursue this approach because initially, the model was trained on gray
 Therefore, it is likely that our initial architecture is not suitable for this problem.
 
 This approach can be found under:
-"Name for Strategy 1 colab notebook"
+https://colab.research.google.com/drive/1GZrofHEIjAzbcZOEZwBZcq4q4iUGIX6w
 
 ### SyncNet-Inspired Approach
 
@@ -53,4 +53,4 @@ This strategy was not pursued for the following reasons:
 - Although the SyncNet architecture was implemented on Google Colab using the parameters described in the paper, the model overfit. Possible factors include not enough training data, an unforeseen bug in the pair generation code, and poor video quality.
 
 This approach can be found under:
-"Name for Strategy 3 colab notebook"
+https://colab.research.google.com/drive/1bieVV__AR7KXmUHegM60qr_z2aPoyEgV
