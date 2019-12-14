@@ -33,6 +33,7 @@ In order to capture what a user see and hear from a stream service, thereby enco
 It is possible to record only a portion of the targeted video streaming using the presented python screeen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach prsented in this project.
 
 This approach can be found under: https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK
+<a href="https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK">Click Here</a> 
 
 #### Demultiplexing of Video and Audio Files
 
@@ -117,3 +118,4 @@ The model was trained to optimize two parameters: VAD aggressiveness and MAR thr
 
 This approach can be found under:
 https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91
+<a href="https://drive.google.com/open?id=1P0gIJ9MKjSI41BaHccStpyt_xtYEAi91">Click Here</a> 
