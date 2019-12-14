@@ -19,7 +19,7 @@ filename: result_current
 The following test results come from two base videos. One of them is a clip of a CNN news report, while the other has been recorded by us. A total of 51 sets were created for each base video, corresponding to audio/video offsets of -1s to 1s in increments of 40ms. The following histogram shows the error between the computed offset and the true offset:
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_thresh.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/res_mar_thresh.png"></img>
 	<br/>
 	<strong>Error between Computed Offset and True Offset</strong>
 </p>
@@ -33,7 +33,7 @@ A threshold technique was initially used to assign a binary value to the MAR. Th
 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_mar_no_thresh.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/res_mar_no_thresh.png"></img>
 	<br/>
 	<strong>Error using Binary MAR</strong>
 </p>
@@ -45,7 +45,7 @@ A real-time implementation would not have access to the entire video. In light o
 
 
 <p align="center">
-	<img src="https://github.com/binhanle/eem202a-project/blob/master/Images/res_var_win_size.png"></img>
+	<img src="https://binhanle.github.io/eem202a-project/Images/res_var_win_size.png"></img>
 	<br/>
 	<strong>Error using Variable Window Size</strong>
 </p>
