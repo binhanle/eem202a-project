@@ -32,6 +32,8 @@ In order to capture what a user see and hear from a stream service, thereby enco
 
 It is possible to record only a portion of the targeted video streaming using the presented python screeen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach prsented in this project.
 
+This approach can be found under: https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK
+
 #### Demultiplexing of Video and Audio Files
 
 In order to properly run a neural network analysis and subsequent shifting of the video and audio stream files, the original video file must be demultiplexed. FFmpeg is a powerful tool which provides the capability to strip away the audio from a video file, while also allowing them to be spliced back together following the calculated time shift. Once these files have been isolated, they can be further processed. Through multiple stages of processing for each file, the relevant information can be separately extracted and processed. By extracting information from the audio stream and the video frames, the computational complexity is also drastically reduced.
