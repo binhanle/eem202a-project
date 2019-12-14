@@ -22,7 +22,7 @@ filename: method_technical
 
 #### Media Capturing
 
-In order to capture what a user see and hear from a stream service, thereby encompassing all latency that could be introduced between the audio/video files, a recording device/software independent from the player of the streaming service must be introduced. For streaming services accessed on a computer or a laptop, the recording can be handled by a screen + audio recording software on the same device or by an external device such as a mobile phone or a video camera. We decided to work screen + audio recording software (e.g. Camtasia, OBS, ShareX, python codes for screen recording, etc.) as this approach gives us an easier time to maintain the deployed codes, libraries, and  packages. After comparing the performance of multiple screen + audio recording software, we selected FFmpeg due to its versatility across operating systems and the ability to have it controlled by some backend process. By incorporating FFmpeg into python via subprocess calls, including virtual audio and screen cpaturers, and adding codes that allows use to select the region of screen for recording, we provide a piece of python program that achieve good quality in screen + audio recording.
+In order to capture what a user see and hear from a stream service, thereby encompassing all latency that could be introduced between the audio/video files, a recording device/software independent from the player of the streaming service must be introduced. For streaming services accessed on a computer or a laptop, the recording can be handled by a screen + audio recording software on the same device or by an external device such as a mobile phone or a video camera. We decided to work screen + audio recording software (e.g. Camtasia, OBS, ShareX, Python codes for screen recording, etc.) as this approach gives us an easier time to maintain the deployed codes, libraries, and  packages. After comparing the performance of multiple screen + audio recording software, we selected FFmpeg due to its versatility across operating systems and the ability to have it controlled by some backend process. By incorporating FFmpeg into Python via subprocess calls, including virtual audio and screen capturers, and adding codes that allows use to select the region of screen for recording, we provide a piece of Python program that achieve good quality in screen + audio recording.
 
 <p align="center">
 	<img src="https://binhanle.github.io/eem202a-project/Images/media_capture.png"/>
@@ -30,7 +30,7 @@ In order to capture what a user see and hear from a stream service, thereby enco
 	<strong>Media Capture Technique</strong>
 </p>
 
-It is possible to record only a portion of the targeted video streaming using the presented python screeen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach prsented in this project.
+It is possible to record only a portion of the targeted video streaming using the presented Python screen recording program. However, it is assumed that the entire video file is available for the selected audio and video synchronization approach presented in this project.
 
 This approach can be found under: https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK
 <a href="https://drive.google.com/open?id=1n4rBjcSOEgC-LY5tTem6cpkIY0Y4amEK">Click Here</a> 
@@ -45,7 +45,7 @@ This project focuses on videos that portray a single full frontal speaker, in ca
 
 ##### Mouth Aspect Ratio
 
-This calculation is broken up into two steps: the face detection and the MAR computation. The dlib python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
+This calculation is broken up into two steps: the face detection and the MAR computation. The dlib Python module is first used to extract the detected face from each frame. This face is then matched to a shape landmark prediction file, where each coordinate in the file corresponds to a specific point on the face. The coordinates for the mouth are extracted from this file, and for each frame the MAR is computed based on the euclidian distances between the opposite horizontal landmarks and the euclidian distances between the opposite vertical landmarks of the mouth. 
 
 <p align="center">
 	<img height="400" src="https://binhanle.github.io/eem202a-project/Images/mar_descriptor.png"/>
@@ -59,7 +59,7 @@ The mouth aspect ratio implementation was inspired by the following: https://git
 
 ##### Voice Activity Detection
 
-Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
+Voice activity detectors are very common for speech processing, specifically when it comes to speech recognition in devices like Siri or Alexa. WebRTCVAD was the Python module used to take care of the voice activity detection, which was created for the Google WebRTC project and is supposedly one of the best VADs available. The selected VAD takes a 10ms section of audio at a time and assigns a binary 1 or 0 based on whether speech was detected during that period of time. It also takes an aggresiveness parameter argument of 0, 1, 2, or 3 which determines how strictly it classifies periods of sound as speech or silence. A higher VAD aggresiveness will generally result in less segments being classified as speech. 
 
 <p align="center">
 	<img src="https://binhanle.github.io/eem202a-project/Images/vad_descriptor.png"/>
@@ -107,7 +107,7 @@ The following diagram summarizes the data pipeline:
 
 ### Datasets
 
-As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
+As it was mentioned before, the scope of this project will be limited to videos that feature a full-frontal view of a single speaker. These videos used in the training and testing datasets were a combination of videos found on the internet, and videos filmed ourselves. By verifying that the implementation works on both types of videos, we are able to show the robustness of our system on different types of full-frontal speaker videos. By using the pydub Python module, silence could be manually inserted at the beginning or the end of the audio file to artifically inject offsets between the video and audio streams. This allows for dozens of datasets to be created from a single base video. FFmpeg was used to separate the original video and audio streams, and to also combine the shifted audio streams with the original video stream to create the data sets. The links to the Google Drive with the data files can be found below:
 
 https://drive.google.com/drive/folders/1clnnBK1GhL06HXMhgHZnuj5A2MMUhfNW?usp=sharing
 
