@@ -35,7 +35,7 @@ Demo video, local machine test script with readme, final presentation video foun
 https://drive.google.com/drive/folders/1bkACCd296XZr6WN9FIi9VbwKCZhVBETt?usp=sharing
 
 YouTube Link to Video:
-https://youtu.be/z2ChHD54tn4
+https://youtu.be/VBxVKRHk9VY
 
 ## Success Metrics
 - Errors in software (potentially a major obstacle as many packages and dependencies need to be installed/utilized correctly)
